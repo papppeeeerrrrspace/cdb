@@ -25,7 +25,7 @@ if len(sys.argv) > 1 :
                 os.system('python3.8 a1.py '+sample_string+' '+replaceName(int(number), counter))
                 os.system('python3.8 a2.py '+sample_string+' '+replaceName(int(number), counter))
                 with open('result1.txt', 'a') as file:
-                    file.write(counter+'\n')
+                    file.write(str(counter)+'\n')
                 file.close()
         with open('result1.txt', 'a') as file:
             file.write('fin\n')
