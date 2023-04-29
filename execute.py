@@ -22,8 +22,8 @@ if len(sys.argv) > 1 :
                 base64_bytes = base64_string.encode("ascii")
                 sample_string_bytes = base64.b64decode(base64_bytes)
                 sample_string = sample_string_bytes.decode("ascii")
-                os.system('python a1.py '+sample_string+' '+replaceName(int(number), counter))
-                os.system('python a2.py '+sample_string+' '+replaceName(int(number), counter))
+                os.system('python3.8 a1.py '+sample_string+' '+replaceName(int(number), counter))
+                os.system('python3.8 a2.py '+sample_string+' '+replaceName(int(number), counter))
                 with open('result1.txt', 'a') as file:
                     file.write(str(counter)+'\n')
                 file.close()

